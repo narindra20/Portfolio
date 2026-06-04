@@ -1,10 +1,8 @@
-// Menu mobile
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
     const header = document.querySelector('.header');
     
-    // Toggle menu mobile
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function() {
             mainNav.classList.toggle('active');
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Fermer le menu mobile en cliquant sur un lien
     const navLinks = document.querySelectorAll('.nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -25,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Header scroll effect
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             header.classList.add('scrolled');
@@ -34,17 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Smooth scrolling pour les ancres
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
-            
             if (targetId === '#') return;
-            
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
@@ -53,21 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Animation des barres de compétences
     function animateSkills() {
         const skillBars = document.querySelectorAll('.skill-level');
-        
         skillBars.forEach(bar => {
             const width = bar.style.width;
             bar.style.width = '0%';
-            
             setTimeout(() => {
                 bar.style.width = width;
             }, 300);
         });
     }
     
-    // Observer pour animer les compétences quand elles sont visibles
     const skillsSection = document.querySelector('.skills');
     if (skillsSection) {
         const observer = new IntersectionObserver((entries) => {
@@ -78,11 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }, { threshold: 0.3 });
-        
         observer.observe(skillsSection);
     }
     
-    // Animation des projets au scroll
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     const portfolioObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -100,29 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
         portfolioObserver.observe(item);
     });
     
-    // Form submission (exemple basique)
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Ici vous ajouteriez l'envoi du formulaire
-            // Pour l'instant, on simule un envoi réussi
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé!';
-            submitBtn.style.backgroundColor = '#2ecc71';
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.backgroundColor = '';
-                this.reset();
-            }, 3000);
-        });
-    }
-    
-    // Dark mode toggle (optionnel)
     const darkModeToggle = document.createElement('button');
     darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     darkModeToggle.className = 'dark-mode-toggle';
@@ -151,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.toggle('dark-mode');
         this.querySelector('i').classList.toggle('fa-moon');
         this.querySelector('i').classList.toggle('fa-sun');
-        
         if (document.body.classList.contains('dark-mode')) {
             localStorage.setItem('darkMode', 'enabled');
         } else {
@@ -159,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Vérifier le mode sombre dans le localStorage
     if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
         darkModeToggle.querySelector('i').classList.remove('fa-moon');
@@ -167,42 +128,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// CSS pour le mode sombre
 const darkModeCSS = `
     .dark-mode {
         background-color: #121212;
         color: #e0e0e0;
     }
-    
     .dark-mode .header {
         background-color: #1e1e1e;
         box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-    
     .dark-mode .logo {
         color: #e0e0e0;
     }
-    
     .dark-mode .nav ul li a {
         color: #e0e0e0;
     }
-    
     .dark-mode .hero {
         background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(52, 152, 219, 0.8));
     }
-    
     .dark-mode section {
         background-color: #1e1e1e;
     }
-    
     .dark-mode .section-title h2 {
         color: #e0e0e0;
     }
-    
     .dark-mode .section-title p {
         color: #b0b0b0;
     }
-    
     .dark-mode .about, 
     .dark-mode .skills,
     .dark-mode .portfolio,
@@ -210,7 +162,6 @@ const darkModeCSS = `
     .dark-mode .contact {
         background-color: #1e1e1e;
     }
-    
     .dark-mode .skill-category,
     .dark-mode .timeline-content,
     .dark-mode .goal-card,
@@ -222,7 +173,6 @@ const darkModeCSS = `
         background-color: #2d2d2d;
         color: #e0e0e0;
     }
-    
     .dark-mode .skill-category h3,
     .dark-mode .timeline-content h3,
     .dark-mode .goal-card h4,
@@ -231,24 +181,20 @@ const darkModeCSS = `
     .dark-mode .academic-item h4 {
         color: #e0e0e0;
     }
-    
     .dark-mode .portfolio-info > p,
     .dark-mode .goal-card p,
     .dark-mode .contact-item p,
     .dark-mode .academic-item p {
         color: #b0b0b0;
     }
-    
     .dark-mode .footer {
         background-color: #121212;
     }
-    
     .dark-mode .dark-mode-toggle {
         background-color: #3498db;
     }
 `;
 
-// Ajouter le CSS du mode sombre
 const style = document.createElement('style');
 style.textContent = darkModeCSS;
 document.head.appendChild(style);
