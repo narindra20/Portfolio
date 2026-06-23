@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
     const header = document.querySelector('.header');
-    
+
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function() {
             mainNav.classList.toggle('active');
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.querySelector('i').classList.toggle('fa-times');
         });
     }
-    
+
     const navLinks = document.querySelectorAll('.nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             header.classList.add('scrolled');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
     });
-    
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     function animateSkills() {
         const skillBars = document.querySelectorAll('.skill-level');
         skillBars.forEach(bar => {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         });
     }
-    
+
     const skillsSection = document.querySelector('.skills');
     if (skillsSection) {
         const observer = new IntersectionObserver((entries) => {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.3 });
         observer.observe(skillsSection);
     }
-    
+
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     const portfolioObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -78,14 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.1 });
-    
+
     portfolioItems.forEach(item => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
         item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         portfolioObserver.observe(item);
     });
-    
+
     const darkModeToggle = document.createElement('button');
     darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     darkModeToggle.className = 'dark-mode-toggle';
@@ -107,9 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
         justify-content: center;
         font-size: 1.2rem;
     `;
-    
+
     document.body.appendChild(darkModeToggle);
-    
+
     darkModeToggle.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
         this.querySelector('i').classList.toggle('fa-moon');
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('darkMode', 'disabled');
         }
     });
-    
+
     if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
         darkModeToggle.querySelector('i').classList.remove('fa-moon');
@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Styles pour le mode sombre (injectés directement dans le DOM)
 const darkModeCSS = `
     .dark-mode {
         background-color: #121212;
@@ -155,7 +156,7 @@ const darkModeCSS = `
     .dark-mode .section-title p {
         color: #b0b0b0;
     }
-    .dark-mode .about, 
+    .dark-mode .about,
     .dark-mode .skills,
     .dark-mode .portfolio,
     .dark-mode .education,
